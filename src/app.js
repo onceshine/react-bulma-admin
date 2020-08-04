@@ -13,10 +13,14 @@ import Components from '@/views/components'
 import Register from '@/views/login'
 import Login from '@/views/login'
 import About from '@/views/about'
+
+// 所有页面都有 footer, 放在 Router 之外了
 import Footer from '@/components/footer'
 
+// 阻止 react-query 激活刷新
 const queryConfig = { queries: { refetchOnWindowFocus: false } }
 
+// 未认证跳转登录页
 function PrivateRoute({ children, ...rest }) {
   return (
     <Route
@@ -35,12 +39,6 @@ function PrivateRoute({ children, ...rest }) {
 }
 
 export default function App() {
-  const [user, setUser] = React.useState(null)
-
-  function login(data) {
-    setUser(data)
-  }
-
   return (
     <ReactQueryConfigProvider config={queryConfig}>
       <Router>
@@ -52,7 +50,7 @@ export default function App() {
             <Register/>
           </Route>
           <Route path="/login">
-            <Login login={login}/>
+            <Login/>
           </Route>
           <Route path="/about">
             <About/>

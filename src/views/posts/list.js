@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useRouteMatch, Link } from 'react-router-dom'
-import axios from 'axios'
 
 import Checkbox from '@/components/checkbox'
 import Pagination from '@/components/pagination'
@@ -8,6 +7,9 @@ import Modal from '@/components/Modal/modal'
 
 import { pageSize } from '@/config'
 
+/*
+ * 表格数据
+ */
 function Item({ item, rowIndex, setModalData }) {
   let match = useRouteMatch()
 
@@ -17,12 +19,19 @@ function Item({ item, rowIndex, setModalData }) {
 
   function del(item) {
     if (!window.confirm('Sure?')) return
+    console.log(item)
     console.log('Delete complete!')
   }
   
   return (
     <tr>
-      <th><div className="pt-1"><Checkbox id={item.id}/></div></th>
+      <th>
+        <div className="pt-1">
+          <Checkbox>
+            <input checked={item.selected} type="checkbox"/>
+          </Checkbox>
+        </div>
+      </th>
       <td>{item.id}</td>
       <td><Link to={`${match.path}/${item.id}`}>{item.title}</Link></td>
       <td>{item.user?.name}</td>
@@ -149,7 +158,13 @@ export default function Index({ error, isLoading, items, totalCount, fetchPosts 
           <table className="table is-fullwidth is-striped">
             <thead>
               <tr>
-                <th><div className="pt-1"><Checkbox id="select-all"/></div></th>
+                <th>
+                  <div className="pt-1">
+                    <Checkbox>
+                      <input type="checkbox"/>
+                    </Checkbox>
+                  </div>
+                </th>
                 <th>ID</th>
                 <th>Title</th>
                 <th>Name</th>
