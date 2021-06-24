@@ -9,9 +9,11 @@ module.exports = {
   output: {
     filename: 'index.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/'
+    publicPath: '/',
+    assetModuleFilename: 'images/[hash][ext][query]'
   },
   resolve: {
+    extensions: ['.js'],
     alias: {
       '@': path.join(__dirname, 'src')
     }
@@ -20,12 +22,10 @@ module.exports = {
     rules: [
       {
         test: /.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
-        use: [{
-          loader: 'file-loader',
-          options: {
-            name: 'fonts/[name].[ext]' 
-          }
-        }]
+        type: 'asset/resource',
+        generator: {
+          filename: 'fonts/[hash][ext][query]'
+        }
       },
       {
         test: /\.css$/,
@@ -42,58 +42,34 @@ module.exports = {
         ]
       },
       {
-        test: /\.s[ac]ss$/i,
-        use: [
-          'style-loader',
-          'css-loader',
-          'sass-loader',
-        ],
+        test: /\.js$/,
+        exclude: /node_modules/,
+        enforce: 'pre',
+        loader: 'eslint-loader'
       },
       {
-        enforce: 'pre',
         test: /\.m?js$/,
         exclude: /node_modules/,
-        loader: 'eslint-loader',
-      },
-      {
-        test: /\.m?js$/,
-        exclude: /(node_modules|bower_components)/,
         use: {
           loader: 'babel-loader'
         }
       },
       {
         test: /\.(png|jpe?g|gif)$/i,
-        loader: 'file-loader',
-        options: {
-          name: 'images/[name].[ext]'
-        }
+        type: 'asset/resource'
       }
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: './index.html'
+      template: './public/index.html'
     })
   ],
   devServer: {
-    before(app, server) {
-      app.post('/login', (req, res) => {
-        res.json({
-          token: 'yyy'
-        })
-      })
-    },
     historyApiFallback: true,
-    proxy: {
-      '/api': {
-        target: 'http://localhost:3000',
-        pathRewrite: {'^/api' : ''}
-      }
-    },
     compress: true,
-    port: 8080
+    port: 8082
   },
-  devtool: '#source-map'
+  devtool: 'source-map'
 }

@@ -1,67 +1,51 @@
 {
-  "name": "react-bulma-admin",
-  "version": "0.0.1-alpha.1",
-  "description": "none",
-  "main": "index.js",
-  "scripts": {
-    "dev": "webpack-dev-server --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js",
-    "storybook": "start-storybook"
-  },
+  "name": "template",
+  "version": "0.0.1-alpha.6",
+  "private": true,
   "author": "by.Genesis",
   "license": "MIT",
+  "scripts": {
+    "start": "webpack serve --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js"
+  },
+  "eslintConfig": {},
+  "browserslist": {
+    "production": [
+      "Chrome >= 55",
+      "Safari >= 11",
+      "iOS >= 11",
+      "Firefox >= 52",
+      "Edge >= 15",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
   "devDependencies": {
-    "@babel/core": "^7.10.3",
-    "@babel/preset-env": "^7.10.3",
-    "@babel/preset-flow": "^7.10.4",
-    "@babel/preset-react": "^7.10.4",
-    "@storybook/react": "^5.3.19",
+    "@babel/core": "^7.12.13",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/plugin-proposal-decorators": "^7.12.12",
+    "@babel/preset-env": "^7.12.13",
     "babel-eslint": "^10.1.0",
-    "babel-loader": "^8.1.0",
-    "babel-plugin-flow-react-proptypes": "^26.0.0",
-    "css-loader": "^3.6.0",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^5.0.2",
     "cssnano": "^4.1.10",
     "eslint": "^7.6.0",
     "eslint-loader": "^4.0.2",
     "eslint-plugin-compat": "^3.8.0",
-    "eslint-plugin-flowtype": "^5.2.0",
-    "eslint-plugin-react": "^7.20.5",
-    "file-loader": "^6.0.0",
-    "html-webpack-plugin": "^4.3.0",
-    "mini-css-extract-plugin": "^0.9.0",
-    "optimize-css-assets-webpack-plugin": "^5.0.3",
-    "postcss-loader": "^3.0.0",
+    "html-webpack-plugin": "^5.0.0",
+    "mini-css-extract-plugin": "^1.3.6",
+    "postcss": "^8.2.5",
+    "postcss-loader": "^5.0.0",
     "postcss-preset-env": "^6.7.0",
-    "sass": "^1.26.10",
-    "sass-loader": "^9.0.2",
-    "style-loader": "^1.2.1",
-    "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0"
-  },
-  "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.14.0",
-    "@reduxjs/toolkit": "^1.4.0",
-    "apexcharts": "^3.19.3",
-    "axios": "^0.19.2",
-    "bulma": "^0.9.0",
-    "by-radio": "^1.2.2",
-    "dayjs": "^1.8.29",
-    "dompurify": "^2.0.12",
-    "es6-promise": "^4.2.8",
-    "lodash": "^4.17.15",
-    "marked": "^1.1.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-query": "^2.4.19",
-    "react-redux": "^7.2.1",
-    "react-router-dom": "^5.2.0",
-    "regenerator-runtime": "^0.13.5"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not ie 10",
-    "not dead",
-    "not op_mini all"
-  ]
+    "style-loader": "^2.0.0",
+    "webpack": "^5.21.2",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2",
+    "webpack-merge": "^5.7.3"
+  }
 }
